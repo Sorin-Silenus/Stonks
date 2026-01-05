@@ -53,10 +53,6 @@ stock_name_label = tk.Label(
 )
 stock_name_label.pack()
 
-# Graph Frame (Hold the graph of the stock of the month)
-graph_frame = tk.Frame(root, pady=10, bg="black")
-graph_frame.pack(fill="both", expand=True)
-
 # --- Graph Logic ---
 # 1. Create the Figure and Axis
 # 'facecolor' sets the background of the plot area
