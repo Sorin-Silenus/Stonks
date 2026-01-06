@@ -27,7 +27,7 @@ _YL_SESSION = _yl_requests.Session()
 
 # Ticker to be reserached
 # TODO: make this user input
-ticker_symbol = "AAPL"
+ticker_symbol = "VYM"
 ticker = yf.Ticker(ticker_symbol)
 info = ticker.info
 historical_data = ticker.history(period="1mo").reset_index()
@@ -46,7 +46,7 @@ header_frame.pack(fill="x") # stretch header frame across the window
 # Stock name label inside header frame
 stock_name_label = tk.Label(
     header_frame,
-    text="AAPL",
+    text=ticker_symbol,
     font=("Arial", 20, "bold"),
     bg="lightgray",
     fg="white"
@@ -54,7 +54,12 @@ stock_name_label = tk.Label(
 stock_name_label.pack()
 
 # --- Graph Logic ---
-# 1. Create the Figure and Axis
+
+# Graph Frame (Hold the graph of the stock of the month)
+graph_frame = tk.Frame(root, pady=10, bg="black")
+graph_frame.pack(fill="both", expand=True)
+
+# Create the Figure and Axis
 # 'facecolor' sets the background of the plot area
 fig, ax = plt.subplots(figsize=(6, 4), dpi=100, facecolor='black')
 
@@ -69,7 +74,7 @@ if end_price >= start_price:
 else:
     stock_color = "#ff3333" # Red
 
-# 2. Plot the data
+# Plot the data
 ax.plot(historical_data['Date'], historical_data['Close'], color=stock_color, linewidth=2)
 
 # 3. Styling
