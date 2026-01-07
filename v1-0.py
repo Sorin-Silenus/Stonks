@@ -10,7 +10,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # --- Fetch Stock Data --- #
 # ------------------------ #
-# TODO: make this user input
 
 def show_ticker_input():
     input_frame = tk.Frame(root, bg="black")
@@ -72,6 +71,8 @@ def show_ticker_input():
     root.bind("<Return>", lambda e: submit())
 
 
+# --- Load Stock Application --- #
+# ------------------------------ #
 def load_stock_app(ticker_symbol):
     ticker = yf.Ticker(ticker_symbol)
     historical_data = ticker.history(period="1mo").reset_index()
@@ -121,6 +122,7 @@ def load_stock_app(ticker_symbol):
     canvas = FigureCanvasTkAgg(fig, master=graph_frame)
     canvas.get_tk_widget().pack(fill="both", expand=True)
     canvas.draw()
+
 
 #  --- GUI Application --- #
 # ------------------------ #
